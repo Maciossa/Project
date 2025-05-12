@@ -1,0 +1,42 @@
+#Guess Random Number Game
+import random
+
+#Arguments
+randomNumber = int(random.randint(1,100))
+countTries = int(1)
+i = 1
+
+#Functions
+def userFunc():
+    try:
+        global userGuess
+        userGuess = 0
+        userGuess = int(input("Guess the number from 1 to 100: "))
+        while userGuess < 1 or userGuess > 100:
+            print("Wrong Number, you can only type number from 1 to 100")
+            userGuess = int(input("Guess the number from 1 to 100: "))
+    except ValueError:
+        print("U can't type letters, its a NUMBER GAME !")
+        userFunc()
+
+#Logic
+userFunc()
+
+while userGuess < 1 and userGuess > 100:
+    userFunc()
+
+if userGuess == randomNumber:
+    print("U Guessed Correctly The Number !!! CONGRATULATION")
+    print(f"It took you {countTries} attempt")
+else:
+    while userGuess != randomNumber:
+        if userGuess > randomNumber:
+            print("Try again !" + " (Your number is higher then the correct one)")
+            userFunc()
+            countTries += 1
+        elif userGuess < randomNumber:
+            print("Try again !" + " (Your number is lower then the correct one)")
+            userFunc()
+            countTries += 1
+    print("U Guessed Correctly The Number !!! CONGRATULATIONS")
+    print(f"It took you {countTries} attempts")
